@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AddUser - FIlmTube</title>
+</head>
+<body>
+<form th:action="@{/users}" method="post">
+    <h1>Añadir Usuario</h1>
+    <label for="nickname">Nickname:</label>
+    <input type="text" name="nickname" id="nickname"/>
+    <br/>
+    <label>Password:</label>
+    <input type="password" name="password" id="password"/>
+    <br/>
+    <label>Email:</label>
+    <input type="text" name="email" id="email"/>
+    <br/>
+    <input type="submit"/><input type="reset" value="Reset"/>
+</form>
+</body>
+</html>

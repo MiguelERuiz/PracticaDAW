@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>FIlmTube</title>
-    <p>Home de la web</p>
+    <title>Home-FIlmTube</title>
 </head>
 <body>
-
+    <h1>Hello <span sec:authentication="name"> user</span></h1>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/admin}">Administration Page</a>
+    </div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="sign out"/>
+    </form>
 </body>
 </html>

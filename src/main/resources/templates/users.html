@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users - FIlmTube</title>
+</head>
+<body>
+<h1>Usuarios</h1>
+    <!--<p th:text="'Id: ' + ${newUser.id}" />-->
+    <p th:text="'Nickname: ' + ${newUser.user}" />
+    <p th:text="'Password: ' + ${newUser.password}" />
+    <p th:text="'Email: ' + ${newUser.email}" />
+    <a href="/addUser">Submit another user</a>
+
+<p>Colors in table:</p>
+<table border="1">
+    <tr th:each="us, it : ${usuarios}">
+        <td th:text="${it.index}">1</td>
+        <td th:text="${us.user}">Color</td>
+        <td th:text="${us.password}">Color</td>
+        <td th:text="${us.email}">Color</td>
+    </tr>
+</table>
+</body>
+</html>
