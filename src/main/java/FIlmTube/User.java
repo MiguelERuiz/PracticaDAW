@@ -41,7 +41,7 @@ public class User {
     }
 
     public void setUser(String user) {
-        this.user = user;
+        this.user= user;
     }
 
     public String getPassword() {
@@ -49,7 +49,7 @@ public class User {
     }
 
     public void setPassword(String passwordHash) {
-        this.password = passwordHash;
+        this.password = new BCryptPasswordEncoder().encode(passwordHash);
     }
 
     public List<GrantedAuthority> getRoles() {

@@ -2,15 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login - FIlmTube</title>
+    <link rel="stylesheet" href="../static/css/styleLogin.css" th:href="@{css/styleLogin.css}" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" />
 </head>
 <body>
 <p th:if="${param.error}">Invalid credentials</p>
 <p th:if="${param.logout}">Logged out</p>
 
-<form th:action="@{/login}" method="post">
-    <label>User Name:</label><input type="text" name="username" /><br />
-    <label>Password:</label><input type="password" name="password" /><br />
-    <input type="submit" value="Sign In" /><br />
-</form>
+<section class="login-page">
+    <section class="form">
+        <form th:action="@{/login}" class="login-form" method="post">
+            <input type="text" placeholder="username" name="username"/>
+            <input type="password" placeholder="password" name="password"/>
+            <button type="submit" value="Sign In">Iniciar Sesión</button>
+        </form>
+    </section>
+</section>
 </body>
 </html>

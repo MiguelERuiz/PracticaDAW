@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" href="../static/css/styleHome.css" th:href="@{css/styleHome.css}" />
+<link rel="stylesheet" href="../static/css/styleEditUser.css" th:href="@{css/styleEditUser.css}" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
       rel="stylesheet" />
+
 <head>
-    <title>Home-FIlmTube</title>
+    <title>Users - FIlmTube</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +23,7 @@
         <section class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Administrar Usuarios</a></li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movies}">Administrar Peliculas</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/peliculas}">Administrar Peliculas</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -45,15 +46,17 @@
     </section>
 </nav>
 
-<section class="container">
-    <h1>Hola <span sec:authentication="name"> user</span></h1>
-    <h1 id="pelis">Películas</h1>
-    <table>
-        <tr th:each="mov : ${movies}">
-            <td th:text="${mov.title}">Color</td>
-            <td th:text="${mov.url}">Color</td>
-        </tr>
-    </table>
+<section class="addUser-page">
+    <section class="form">
+        <h2>Editar Usuario</h2>
+        <form th:action="@{/editedUser(id=${id})}" method="post">
+            <input type="text" name="nickname" placeholder="Nickname" id="nickname"/>
+            <input type="password" name="password" placeholder="Password" id="password"/>
+            <input type="text" name="email" placeholder="Email" id="email"/>
+            <button type="submit">Editar</button>
+            <button type="reset" value="Reset">Reset</button>
+        </form>
+    </section>
 </section>
 </body>
 </html>

@@ -2,9 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>index - FIilmtube</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" media="screen"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" />
 </head>
 <body>
-    <h1>Este es el index</h1>
-    <a th:href="@{/home}">here</a>
+<section class="hero-image">
+    <section class="hero-text">
+        <h1>FIlmTube</h1>
+    </section>
+    <a th:href="@{/home}" class="btn btn-default" role="button">Entrar</a>
+</section>
 </body>
 </html>
