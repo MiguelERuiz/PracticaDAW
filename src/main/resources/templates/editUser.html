@@ -18,12 +18,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">FIlmTube</a>
+            <a class="navbar-brand" th:href="@{/home}">FIlmTube</a>
         </section>
         <section class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Administrar Usuarios</a></li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/peliculas}">Administrar Peliculas</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movies}">Administrar Peliculas</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

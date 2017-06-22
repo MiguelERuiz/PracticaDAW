@@ -23,12 +23,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">FIlmTube</a>
+            <a class="navbar-brand" th:href="@{/home}">FIlmTube</a>
         </section>
         <section class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Administrar Usuarios</a></li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/peliculas}">Administrar Peliculas</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movies}">Administrar Peliculas</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -53,14 +53,19 @@
 <section class="container" id="ficha">
     <section class="row">
         <section class="col-sm-4">
-            <img th:src="@{../images/capitan_america.jpg}" class="img-responsive img-thumbnail" alt="Portada Capitán América"/>
+            <img th:src="${movie.poster}" class="img-responsive img-thumbnail" alt="Portada"/>
         </section>
         <section class="col-sm-8">
             <section class="container">
                 <h2>Ficha Técnica</h2>
                 <section class="well">
                     <p th:text="${movie.title}"><b>Titulo:</b> Capitán América</p>
-                    <p th:text="${movie.url}"><b>Url:</b>asdfasdfadsf</p>
+                    <p th:text="${movie.description}"><b>Url:</b>asdfasdfadsf</p>
+                    <p th:text="${movie.year}"><b>Url:</b>asdfasdfadsf</p>
+                    <p th:text="${movie.director}"><b>Url:</b>asdfasdfadsf</p>
+                    <p th:text="${movie.actors}"><b>Url:</b>asdfasdfadsf</p>
+                    <p th:text="${movie.rating}"><b>Url:</b>asdfasdfadsf</p>
+
                 </section>
             </section>
         </section>
@@ -70,7 +75,7 @@
     <section class="container">
         <h2>Tráiler</h2>
         <section class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1OQhxgIWdFA"></iframe>
+            <iframe class="embed-responsive-item" th:src="${movie.url}"></iframe>
         </section>
     </section>
 </section>

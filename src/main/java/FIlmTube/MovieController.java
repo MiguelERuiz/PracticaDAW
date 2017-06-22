@@ -8,12 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by Nacho on 18/06/2017.
- */
 
 @Controller
 public class MovieController {
@@ -53,15 +47,23 @@ public class MovieController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value="/addedMovie",method={RequestMethod.GET,RequestMethod.POST})
     public String addedMovie(@RequestParam String title, @RequestParam String url){
-        movieService.añadirPelicula(title,url);
+        Results results = movieService.getResults(title);
+        movieService.añadirPelicula(title,url,results.getId());
         return "redirect:/movies";
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @RequestMapping("/viewMovie")
     public ModelAndView viewMovie(@RequestParam Long id){
-       Movie m = movieService.getPelicula(id);
-       return new ModelAndView("/viewMovie").addObject("movie",m);
+
+        Movie m = movieService.getPelicula(id);
+        if (!movieService.camposVacios(id)){
+            m = movieService.getPelicula(id);
+        }else {
+            TheMovieDB movieDB = movieService.getMovieFromTMDB(m);
+            m = movieService.completeInformation(m,movieDB);
+        }
+        return new ModelAndView("/viewMovie").addObject("movie",m);
     }
 
 
@@ -81,9 +83,17 @@ public class MovieController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value="/deleteMovie", method={RequestMethod.GET,RequestMethod.POST})
     public String remove(@RequestParam Long id){
-        if(id != 1) {
-            movieService.borrarPelicula(id);
-        }
+        movieService.borrarPelicula(id);
         return "redirect:/movies";
     }
+
+    @Secured({"ROLE_ADMiN","ROLE_USER"})
+    @RequestMapping("/search")
+    public ModelAndView searchMovie(@RequestParam String title){
+        Iterable<Movie> m =movieService.getMoviesByTitle(title);
+        return new ModelAndView("/home").addObject("movie",m);
+//        Aquí crear la vista /search donde tengo que listar las peliculas que me vayan saliendo de el iterador.
+
+    }
+
 }

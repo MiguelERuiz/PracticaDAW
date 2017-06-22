@@ -49,10 +49,10 @@
 <section class="addUser-page">
     <section class="form">
         <h2>Editar Usuario</h2>
-        <form th:action="@{/editedUser(id=${id})}" method="post">
-            <input type="text" name="nickname" placeholder="Nickname" id="nickname"/>
-            <input type="password" name="password" placeholder="Password" id="password"/>
-            <input type="text" name="email" placeholder="Email" id="email"/>
+        <form th:action="@{/editedMovie(id=${id})}" method="post">
+            <input type="text" name="title" placeholder="Title" id="title"/>
+            <input type="text" name="url" placeholder="Url" id="url"/>
+            <!--<input type="text" name="email" placeholder="Email" id="email"/>-->
             <button type="submit">Editar</button>
             <button type="reset" value="Reset">Reset</button>
         </form>

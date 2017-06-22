@@ -1,13 +1,7 @@
 package FIlmTube;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-/**
- * Created by Nacho on 28/05/2017.
- */
 @Entity
 public class Movie {
 
@@ -17,21 +11,25 @@ public class Movie {
 
     private String url;
     private String title;
+    @Column(length=1000000)
     private String description;
     private String year;
     private String director;
+    @Column(length=1000000)
     private String actors;
     private String poster;
     private String rating;
+    private Long imdbId;
 
     public Movie(){}
 
-    public Movie(String title, String url){
+    public Movie(String title, String url, Long imdbId){
         this.title = title;
         this.url = url;
+        this.imdbId = imdbId;
     }
 
-    public Movie(String url, String title, String description, String year, String director, String actors, String poster, String rating) {
+    public Movie(String url, String title, String description, String year, String director, String actors, String poster, String rating, Long imdbId) {
         this.url = url;
         this.title = title;
         this.description = description;
@@ -40,6 +38,7 @@ public class Movie {
         this.actors = actors;
         this.poster = poster;
         this.rating = rating;
+        this.imdbId = imdbId;
     }
 
     public Long getId() {
@@ -112,5 +111,13 @@ public class Movie {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public Long getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdb_id(Long imdbId) {
+        this.imdbId = imdbId;
     }
 }

@@ -7,10 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-/**
- * Created by Nacho on 18/06/2017.
- */
-
 @Service
 public class UserService {
 
