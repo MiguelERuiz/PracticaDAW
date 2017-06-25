@@ -1,0 +1,86 @@
+/*
+ * Base structure
+ */
+
+ /* Move down content because we have a fixed navbar that is 50px tall */
+ body {
+  background: url("../images/cinefamilia.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #FFFFFF;
+}
+.container {
+  position: relative;
+  margin-top: 50px;
+}
+
+.container h1 {
+    color: white;
+}
+
+#pelis {
+    position: relative;
+    left: 40%;
+}
+/*Tengo qyue seguir probando para que el sidebar me quede ajustado a la izq y arriba*/
+ .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    /*z-index: 1000;*/
+    display: block;
+    padding: 20px;
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;  Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > a,
+.nav-sidebar > a:hover,
+.nav-sidebar > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+#botonLogout {
+    padding: 15px;
+}
+#botonLogout:link {
+    text-decoration: none;
+}
+
+#botonLogout:visited {
+    text-decoration: none;
+}
+
+#botonLogout:hover {
+    text-decoration: none;
+}
+
+#botonLogout:active {
+    text-decoration: none;
+}
+ .container-info {position:relative}
+.container-movie { position:relative;}
+.container-movie img{ vertical-align: text-bottom;}
+.container-movie .title{ margin-bottom: 5px;}
+.container-movie .poster{ display: inline-block; }
+.container-movie .poster img{ box-shadow: 2px 3px 4px #BBBBBB}
+.container-movie .info-container{ display: inline-block; width: 70%; margin-left: 20px; vertical-align: top; min-height: 145px;}
+.container-movie .info-container > div{ margin-bottom: 7px;}
+.container-movie .info-container .mc-cast{ overflow-y: hidden;}
+.container-movie .info-container .mc-cast a{ display: inline-block; margin-bottom: 3px;}
+.container-movie .rating{ }

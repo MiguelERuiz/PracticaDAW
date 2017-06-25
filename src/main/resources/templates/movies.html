@@ -3,10 +3,12 @@
 	  xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 	<title>Users - FIlmTube</title>
-	<link rel="stylesheet" href="../static/css/styleUsers.css" th:href="@{css/styleUsers.css}" />
+	<link rel="stylesheet" href="../static/css/styleMovies.css" th:href="@{css/styleMovies.css}" />
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		  th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
 		  rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,12 +24,12 @@
 		<section class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Administrar Usuarios</a></li>
-				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/peliculas}">Administrar Peliculas</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movies}">Administrar Peliculas</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<form th:action="@{/logout}" method="post">
-						<button id="botonLogout" class="btn btn-link" type="submit">Cerrar Sesión</button>
+						<button id="botonLogout" class="btn btn-link" type="submit"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</button>
 					</form>
 				</li>
 			</ul>
@@ -45,39 +47,63 @@
 	</section>
 </nav>
 <section class="container">
-	<section class="row">
-		<section class="col-sm-9">
-			<h2>Películas</h2>
-			<section class="table-responsive">
-				<table class="table">
-					<thead>
-					<tr>
-						<th>Titulo</th>
-						<th>URL</th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr th:each="mov : ${movies}">
-						<td th:text="${mov.title}">Color</td>
-						<td th:text="${mov.url}">Color</td>
-						<td>
-							<section class="btn-group">
-								<a th:href="@{/viewMovie(id=${mov.getId()})}">
-									<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span></button>
-								</a>
-								<a th:href="@{/editMovie(id=${mov.getId()})}">
-									<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
-								</a>
-								<a th:href="@{/deleteMovie(id=${mov.getId()})}">
-									<button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> </button>
-								</a>
-							</section>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-				<a class="btn btn-primary" th:href="@{/addMovie}">Añadir Pelicula</a>
+	<section class="container-fluid">
+		<section th:if="${param.exito}" class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Añadido Correctamente!</strong>
+		</section>
+		<section th:if="${param.error}" class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Error: Película Ya Disponible</strong>
+		</section>
+		<section th:if="${param.exitoActualizar}" class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Modificado Correctamente!</strong>
+		</section>
+		<section th:if="${param.errorActualizar}" class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Error: No Ha Insertado Ningún Dato!</strong>
+		</section>
+		<section th:if="${param.exitoBorrar}" class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Borrado Correctamente!</strong>
+		</section>
+	</section>
+	<section>
+		<section class="row">
+			<section class="col-md-12">
+				<h2>Películas</h2>
+				<section class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th>Titulo</th>
+							<th>URL</th>
+							<th>Ver Editar Borrar</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="mov : ${movies}">
+							<td th:text="${mov.title}"></td>
+							<td th:text="${mov.url}"></td>
+							<td>
+								<section class="btn-group">
+									<a th:href="@{/viewMovie(id=${mov.getId()})}">
+										<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span></button>
+									</a>
+									<a th:href="@{/editMovie(id=${mov.getId()})}">
+										<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+									</a>
+									<a th:href="@{/deleteMovie(id=${mov.getId()})}">
+										<button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> </button>
+									</a>
+								</section>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<a class="btn btn-primary" th:href="@{/addMovie}">Añadir Pelicula</a>
+				</section>
 			</section>
 		</section>
 	</section>

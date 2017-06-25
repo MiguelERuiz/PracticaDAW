@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" href="../static/css/styleUsers.css" th:href="@{css/styleUsers.css}" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
-      rel="stylesheet" />
 
 <head>
     <title>Users - FIlmTube</title>
+    <link rel="stylesheet" href="../static/css/styleUsers.css" th:href="@{css/styleUsers.css}" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -28,7 +30,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form th:action="@{/logout}" method="post">
-                        <button id="botonLogout" class="btn btn-link" type="submit">Cerrar Sesión</button>
+                        <button id="botonLogout" class="btn btn-link" type="submit"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>
@@ -46,37 +48,69 @@
     </section>
 </nav>
 <section class="container">
-    <section class="row">
-        <section class="col-sm-9">
-            <h2>Usuarios</h2>
-            <section class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Editar Borrar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="us : ${usuarios}">
-                        <td th:text="${us.user}">Color</td>
-                        <td th:text="${us.email}">Color</td>
-                        <td>
-                            <section class="btn-group">
-                                <a th:href="@{/editUser(id=${us.getId()})}">
-                                    <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
-                                </a>
-                                <a th:href="@{/deleteUser(id=${us.getId()})}">
-                                    <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> </button>
-                                </a>
-                            </section>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+    <section class="container-fluid">
+        <section th:if="${param.exito}" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Añadido Correctamente!</strong>
+        </section>
+        <section th:if="${param.errorNombre}" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error: Nombre Ya Utilizado</strong>
+        </section>
+        <section th:if="${param.errorEmail}" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error: Email Ya Utilizado</strong>
+        </section>
+        <section th:if="${param.exitoActualizar}" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Modificado Correctamente!</strong>
+        </section>
+        <section th:if="${param.errorActualizar}" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error: No Ha Insertado Ningún Dato!</strong>
+        </section>
+        <section th:if="${param.exitoBorrar}" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Borrado Correctamente!</strong>
+        </section>
+        <section th:if="${param.errorBorrar}" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error: No Se Puede Borrar El Admin!</strong>
+        </section>
+    </section>
+    <section>
+        <section class="row">
+            <section class="col-md-12">
+                <h2>Usuarios</h2>
+                <section class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Editar Borrar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="us : ${usuarios}">
+                            <td th:text="${us.user}">Color</td>
+                            <td th:text="${us.email}">Color</td>
+                            <td>
+                                <section class="btn-group">
+                                    <a th:href="@{/editUser(id=${us.getId()})}">
+                                        <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                                    </a>
+                                    <a th:href="@{/deleteUser(id=${us.getId()})}">
+                                        <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> </button>
+                                    </a>
+                                </section>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <a th:href="@{/addUser}"><button class="btn btn-primary">Añadir Usuario</button></a>
             </section>
-            <a th:href="@{/addUser}"><button class="btn btn-primary">Añadir Otro Usuario</button></a>
         </section>
     </section>
 </section>

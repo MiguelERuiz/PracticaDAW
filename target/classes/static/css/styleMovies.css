@@ -1,0 +1,79 @@
+body {
+	background: url("../images/cinefamilia.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	color: #FFFFFF;
+}
+
+.container-fluid .alert{
+    position: relative;
+    margin-top: 70px;
+}
+
+/* Estilo del botón del Log out*/
+#botonLogout {
+    padding: 15px;
+}
+
+#botonLogout:link {
+    text-decoration: none;
+}
+
+#botonLogout:visited {
+    text-decoration: none;
+}
+
+#botonLogout:hover {
+    text-decoration: none;
+}
+
+#botonLogout:active {
+    text-decoration: none;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.container h2 {
+    color: white;
+}
+
+/* Poner la tabla más visible*/
+.table {
+  background-color: white;
+  color: black;
+}
+
+.table th {
+           background-color: #006dcc;
+           color: white;
+}
+.table tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+.table th,td {
+    text-align: center;
+}
+
+.btn-group a:link {
+    text-decoration: none;
+}
+
+.btn-group a {
+    padding: 0 3px;
+}
+.btn-group a:visited {
+    text-decoration: none;
+}
+
+.btn-group a:hover {
+    text-decoration: none;
+}
+
+.btn-group a:active {
+    text-decoration: none;
+}

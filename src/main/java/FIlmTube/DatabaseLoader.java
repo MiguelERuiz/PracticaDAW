@@ -25,7 +25,7 @@ public class DatabaseLoader {
                 new SimpleGrantedAuthority("ROLE_ADMIN")
         };
         //Create
-        userRepository.save(new User("admin","admin","admin@email.com", Arrays.asList(adminRoles)));
+//        userRepository.save(new User("admin","admin","admin@email.com", Arrays.asList(adminRoles)));
 
     }
 }

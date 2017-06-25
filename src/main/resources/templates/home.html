@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" href="../static/css/styleHome.css" th:href="@{css/styleHome.css}" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
-      rel="stylesheet" />
 <head>
     <title>Home-FIlmTube</title>
+    <link rel="stylesheet" href="../static/css/styleHome.css" th:href="@{css/styleHome.css}" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="../static/scripts/scriptPeliculas.js"></script>-->
 </head>
 <body>
+<a href="#" class="scroll-to-top"><span class="glyphicon glyphicon-arrow-up"></span><span class="sr-only">Ir arriba</span></a>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <section class="container-fluid">
         <section class="navbar-header">
@@ -27,13 +31,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form th:action="@{/logout}" method="post">
-                        <button id="botonLogout" class="btn btn-link" type="submit">Cerrar Sesión</button>
+                        <button id="botonLogout" class="btn btn-link" type="submit"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" role="search" th:action="@{/search}" method="get">
                 <section class="input-group">
-                    <input th:action="@{/search}" type="text" name="title" class="form-control" placeholder="Buscar" id="title"/>
+                    <input type="text" name="title" class="form-control" placeholder="Buscar" id="title"/>
                     <section class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
@@ -51,7 +55,7 @@
     <section class="row">
         <section class="col-md-4" th:each="mov : ${movies}">
             <section class="thumbnail" >
-                <a th:href="@{/viewMovie(id=${mov.getId()})}">
+                <a class="image" th:href="@{/viewMovie(id=${mov.getId()})}">
                     <img th:src="${mov.poster}" th:alt="${mov.title}" style="width:100%"/>
                 </a>
             </section>

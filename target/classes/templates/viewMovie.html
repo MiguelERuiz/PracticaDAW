@@ -2,13 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <link rel="stylesheet" href="../static/css/styleUsers.css" th:href="@{css/styleUsers.css}" />
+    <link rel="stylesheet" href="../static/css/styleViewMovie.css" th:href="@{css/styleViewMovie.css}" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
           rel="stylesheet" />
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-    <!--<script type="text/javascript" src="scripts/scriptDescripcionPelicula.js"></script>-->
 </head>
 <body>
 <title>FIlmTube</title>
@@ -29,11 +26,13 @@
             <ul class="nav navbar-nav">
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Administrar Usuarios</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movies}">Administrar Peliculas</a></li>
+                <li><a href="#ficha">Ficha Técnica</a></li>
+                <li><a href="#video">Película</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form th:action="@{/logout}" method="post">
-                        <button id="botonLogout" class="btn btn-link" type="submit">Cerrar Sesión</button>
+                        <button id="botonLogout" class="btn btn-link" type="submit"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>
@@ -56,24 +55,23 @@
             <img th:src="${movie.poster}" class="img-responsive img-thumbnail" alt="Portada"/>
         </section>
         <section class="col-sm-8">
-            <section class="container">
+            <section class="container-info">
                 <h2>Ficha Técnica</h2>
                 <section class="well">
-                    <p th:text="${movie.title}"><b>Titulo:</b> Capitán América</p>
+                    <p th:text="${movie.title}"> Capitán América</p>
                     <p th:text="${movie.description}"><b>Url:</b>asdfasdfadsf</p>
                     <p th:text="${movie.year}"><b>Url:</b>asdfasdfadsf</p>
                     <p th:text="${movie.director}"><b>Url:</b>asdfasdfadsf</p>
                     <p th:text="${movie.actors}"><b>Url:</b>asdfasdfadsf</p>
                     <p th:text="${movie.rating}"><b>Url:</b>asdfasdfadsf</p>
-
                 </section>
             </section>
         </section>
     </section>
 </section>
-<section  id="video">
+<section>
     <section class="container">
-        <h2>Tráiler</h2>
+        <h2 id="video">Película</h2>
         <section class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" th:src="${movie.url}"></iframe>
         </section>

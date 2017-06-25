@@ -1,0 +1,45 @@
+body {
+	background: url("../images/cinefamilia.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	color: #FFFFFF;
+}
+
+
+/* Estilo del botón del Log out*/
+#botonLogout {
+    padding: 15px;
+}
+
+#botonLogout:link {
+    text-decoration: none;
+}
+
+#botonLogout:visited {
+    text-decoration: none;
+}
+
+#botonLogout:hover {
+    text-decoration: none;
+}
+
+#botonLogout:active {
+    text-decoration: none;
+}
+
+.container {
+      padding-top: 70px;
+      padding-bottom: 40px;
+}
+
+.container h2 {
+      color: white;
+}
+
+/* Poner la tabla más visible*/
+.table {
+  background-color: white;
+  color: black;
+}

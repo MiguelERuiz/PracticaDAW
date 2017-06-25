@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" href="../static/css/styleEditUser.css" th:href="@{css/styleEditUser.css}" />
+<link rel="stylesheet" href="../static/css/styleSearch.css" th:href="@{css/styleSearch.css}" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
       rel="stylesheet" />
-
 <head>
-    <title>Users - FIlmTube</title>
+    <title>Home-FIlmTube</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -34,7 +33,7 @@
             </ul>
             <form class="navbar-form navbar-right">
                 <section class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar"/>
+                    <input th:action="@{/search}" type="text" name="title" class="form-control" placeholder="Buscar" id="title"/>
                     <section class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
@@ -46,16 +45,34 @@
     </section>
 </nav>
 
-<section class="addUser-page">
-    <section class="form">
-        <h2>Editar Usuario</h2>
-        <form th:action="@{/editedUser(id=${id})}" method="post">
-            <input type="text" name="nickname" placeholder="Nickname" id="nickname"/>
-            <input type="password" name="password" placeholder="Password" id="password"/>
-            <input type="text" name="email" placeholder="Email" id="email"/>
-            <button type="submit">Editar</button>
-            <button type="reset" value="Reset">Reset</button>
-        </form>
+<!--<section class="container">-->
+<!--<h1 id="pelis">Resultado búsqueda</h1>-->
+<!--<section class="row">-->
+<!--<section class="col-md-4">-->
+<!--<section class="thumbnail" th:each="mov : ${movies}">-->
+<!--<a th:href="@{/viewMovie(id=${mov.getId()})}">-->
+<!--<img th:src="${mov.poster}" th:alt="${mov.title}" style="width: 100%"/>-->
+<!--</a>-->
+<!--</section>-->
+<!--</section>-->
+<!--</section>-->
+<!--</section>-->
+<section class="container-info">
+    <section class="container-movie">
+        <section class="movie">
+            <section class="poster">
+                <!--<a><img th:src="${mov.poster}"></a>-->
+                <a><img src="../images/capitan_america.jpg" width="100" height=""/></a>
+            </section>
+            <section class="info-container">
+                <section class="title">Capitán América</section>
+                <section class="rating">10</section>
+                <section class="director">The Best One</section>
+                <section class="cast">
+                    <section class="credits">Chris Evans, Tommy Lee Jones, ...</section>
+                </section>
+            </section>
+        </section>
     </section>
 </section>
 </body>

@@ -18,13 +18,17 @@
 
 .container h1 {
     color: white;
+    margin: 20px;
 }
 
 #pelis {
     position: relative;
-    left: 40%;
+    text-align: center;
+    font-family: Georgia;
+    font-style: oblique;
+    font-size: 50px;
 }
-/*Tengo qyue seguir probando para que el sidebar me quede ajustado a la izq y arriba*/
+
  .sidebar {
     position: fixed;
     top: 51px;
@@ -72,4 +76,9 @@
 
 #botonLogout:active {
     text-decoration: none;
+}
+
+.thumbnail img {
+    height: 525px;
+    width: 350px;
 }

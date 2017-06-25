@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" href="../static/css/styleEditUser.css" th:href="@{css/styleEditUser.css}" />
+<link rel="stylesheet" href="../static/css/styleEditMovie.css" th:href="@{css/styleEditMovie.css}" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
       rel="stylesheet" />
@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form th:action="@{/logout}" method="post">
-                        <button id="botonLogout" class="btn btn-link" type="submit">Cerrar Sesión</button>
+                        <button id="botonLogout" class="btn btn-link" type="submit"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>
@@ -46,13 +46,18 @@
     </section>
 </nav>
 
-<section class="addUser-page">
+<section >
     <section class="form">
-        <h2>Editar Usuario</h2>
+        <h2>Editar Película</h2>
         <form th:action="@{/editedMovie(id=${id})}" method="post">
             <input type="text" name="title" placeholder="Title" id="title"/>
             <input type="text" name="url" placeholder="Url" id="url"/>
-            <!--<input type="text" name="email" placeholder="Email" id="email"/>-->
+            <input type="text" name="description" placeholder="Description" id="description"/>
+            <input type="text" name="year" placeholder="Year" id="year"/>
+            <input type="text" name="director" placeholder="Director" id="director"/>
+            <input type="text" name="actors" placeholder="Actors" id="actors"/>
+            <input type="text" name="poster" placeholder="Poster" id="poster"/>
+            <input type="text" name="rating" placeholder="Rating" id="rating"/>
             <button type="submit">Editar</button>
             <button type="reset" value="Reset">Reset</button>
         </form>

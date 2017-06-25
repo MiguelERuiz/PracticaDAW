@@ -23,12 +23,12 @@
         <section class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Administrar Usuarios</a></li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/peliculas}">Administrar Peliculas</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movies}">Administrar Peliculas</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form th:action="@{/logout}" method="post">
-                        <button id="botonLogout" class="btn btn-link" type="submit">Cerrar Sesión</button>
+                        <button id="botonLogout" class="btn btn-link" type="submit"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>

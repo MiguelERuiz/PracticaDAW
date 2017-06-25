@@ -23,25 +23,61 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public void añadirPelicula(String title, String url, Long imdbId){
-        Movie m = new Movie(title,url,imdbId);
-        movieRepository.save(m);
+    public boolean añadirPelicula(String title, String url, Long imdbId){
+        boolean resultado = false;
+        if (movieRepository.findByTitle(title) == null){
+            Movie m = new Movie(title,url,imdbId);
+            m.setPoster("../images/defaultImage.jpg");
+            movieRepository.save(m);
+            resultado = true;
+        }
+        return resultado;
     }
 
-    public void actualizarPelicula(Long id, String title, String url){
-        Movie m = movieRepository.findOne(id);
+    public boolean actualizarPelicula(Long id, String title, String url, String description, String year, String director, String actors, String poster, String rating){
+        boolean vacios = false;
 
-        if(title.equals("")){
-            title = m.getTitle();
+        if(!(title.equals("") && url.equals("") && description.equals("") && year.equals("") && director.equals("") &&
+                actors.equals("") && poster.equals("") && rating.equals(""))) {
+            Movie m = movieRepository.findOne(id);
+
+            if (title.equals("")) {
+                title = m.getTitle();
+            }
+            if (url.equals("")) {
+                url = m.getUrl();
+            }
+            if (description.equals("")) {
+                description = m.getDescription();
+            }
+            if (year.equals("")) {
+                year = m.getYear();
+            }
+            if (director.equals("")) {
+                director = m.getDirector();
+            }
+            if (actors.equals("")) {
+                actors = m.getActors();
+            }
+            if (poster.equals("")) {
+                poster = m.getPoster();
+            }
+            if (rating.equals("")) {
+                rating = m.getRating();
+            }
+            m.setTitle(title);
+            m.setUrl(url);
+            m.setDescription(description);
+            m.setYear(year);
+            m.setDirector(director);
+            m.setActors(actors);
+            m.setPoster(poster);
+            m.setRating(rating);
+
+            movieRepository.save(m);
+            vacios = true;
         }
-        if(url.equals("")){
-            url = m.getUrl();
-        }
-
-        m.setTitle(title);
-        m.setUrl(url);
-
-        movieRepository.save(m);
+        return vacios;
     }
     public void borrarPelicula(Long id){
         movieRepository.delete(id);
@@ -50,7 +86,7 @@ public class MovieService {
     public boolean camposVacios(Long id){
         Movie m = movieRepository.findOne(id);
         return (m.getActors() == null && m.getDescription() == null && m.getDirector() == null
-                && m.getPoster() == null && m.getRating() == null && m.getYear() == null);
+                && m.getRating() == null && m.getYear() == null);
     }
 
     public Results getResults(String titulo) {
@@ -59,7 +95,6 @@ public class MovieService {
         SearchMovieRestRepository searchMovies = restAdapter.create(SearchMovieRestRepository.class);
         MovieRest requestMovie = searchMovies.getMovieByName(api_key, titulo);
         List<Results> results = requestMovie.getResults();
-        System.out.println(results.toString());
 
         return results.get(0);
     }
@@ -107,7 +142,7 @@ public class MovieService {
         if(movie.getActors()==null){
             movie.setActors(movieDB.getCredits().castToString());
         }
-        if(movie.getPoster()==null){
+        if(movie.getPoster().equals("../images/defaultImage.jpg")){
             movie.setPoster(movieDB.getMovieRest_1().getPoster_path());
         }
         if(movie.getRating()==null){

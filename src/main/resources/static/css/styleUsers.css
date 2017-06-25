@@ -29,6 +29,11 @@ body {
     text-decoration: none;
 }
 
+.container-fluid .alert{
+    position: relative;
+    margin-top: 70px;
+}
+
 .container {
       padding-top: 70px;
       padding-bottom: 70px;
@@ -39,7 +44,36 @@ body {
 }
 
 /* Poner la tabla más visible*/
+
 .table {
   background-color: white;
   color: black;
+}
+
+.table th {
+           background-color: #006dcc;
+           color: white;
+}
+.table tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+.table th,td {
+    text-align: center;
+}
+
+.btn-group a:link {
+    text-decoration: none;
+}
+
+.btn-group a:visited {
+    text-decoration: none;
+}
+
+.btn-group a:hover {
+    text-decoration: none;
+}
+
+.btn-group a:active {
+    text-decoration: none;
 }

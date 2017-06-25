@@ -47,9 +47,12 @@ public class MovieController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value="/addedMovie",method={RequestMethod.GET,RequestMethod.POST})
     public String addedMovie(@RequestParam String title, @RequestParam String url){
+        String resultado = "redirect:/movies?exito";
         Results results = movieService.getResults(title);
-        movieService.añadirPelicula(title,url,results.getId());
-        return "redirect:/movies";
+        if(!movieService.añadirPelicula(title,url,results.getId())){
+            resultado = "redirect:/movies?error";
+        }
+        return resultado;
     }
 
     @Secured({"ROLE_ADMIN","ROLE_USER"})
@@ -75,23 +78,27 @@ public class MovieController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value="/editedMovie", method={RequestMethod.GET,RequestMethod.POST})
-    public String editedMovie(@RequestParam Long id,@RequestParam String title, @RequestParam String url){
-        movieService.actualizarPelicula(id, title, url);
-        return "redirect:/movies";
+    public String editedMovie(@RequestParam Long id,@RequestParam String title, @RequestParam String url, @RequestParam String description, @RequestParam String year,
+                              @RequestParam String director, @RequestParam String actors, @RequestParam String poster, @RequestParam String rating){
+       String resultado = "redirect:/movies?exitoActualizar";
+        if(!movieService.actualizarPelicula(id, title, url, description, year, director, actors, poster, rating)){
+            resultado = "redirect:/movies?errorActualizar";
+        }
+        return resultado;
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value="/deleteMovie", method={RequestMethod.GET,RequestMethod.POST})
     public String remove(@RequestParam Long id){
         movieService.borrarPelicula(id);
-        return "redirect:/movies";
+        return "redirect:/movies?exitoBorrar";
     }
 
     @Secured({"ROLE_ADMiN","ROLE_USER"})
     @RequestMapping("/search")
     public ModelAndView searchMovie(@RequestParam String title){
         Iterable<Movie> m =movieService.getMoviesByTitle(title);
-        return new ModelAndView("/home").addObject("movie",m);
+        return new ModelAndView("/search").addObject("movies",m);
 //        Aquí crear la vista /search donde tengo que listar las peliculas que me vayan saliendo de el iterador.
 
     }
