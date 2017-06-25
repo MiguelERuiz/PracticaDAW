@@ -13,7 +13,7 @@
 }
 .container {
   position: relative;
-  margin-top: 50px;
+  margin: 70px 0 40px;
 }
 
 .container h1 {
@@ -81,4 +81,10 @@
 .thumbnail img {
     height: 525px;
     width: 350px;
+}
+
+.row h3 {
+    font-family: Georgia;
+    font-style: oblique;
+    color:white;
 }
