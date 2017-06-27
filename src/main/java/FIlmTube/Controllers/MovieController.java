@@ -1,5 +1,9 @@
-package FIlmTube;
+package FIlmTube.Controllers;
 
+import FIlmTube.Movie;
+import FIlmTube.TheMovieDB.MovieRest;
+import FIlmTube.Services.MovieService;
+import FIlmTube.TheMovieDB.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -63,7 +67,7 @@ public class MovieController {
         if (!movieService.camposVacios(id)){
             m = movieService.getPelicula(id);
         }else {
-            TheMovieDB movieDB = movieService.getMovieFromTMDB(m);
+            MovieRest movieDB = movieService.getMovieFromTMDB(m);
             m = movieService.completeInformation(m,movieDB);
         }
         return new ModelAndView("/viewMovie").addObject("movie",m);
@@ -99,8 +103,6 @@ public class MovieController {
     public ModelAndView searchMovie(@RequestParam String title){
         Iterable<Movie> m =movieService.getMoviesByTitle(title);
         return new ModelAndView("/search").addObject("movies",m);
-//        Aquí crear la vista /search donde tengo que listar las peliculas que me vayan saliendo de el iterador.
-
     }
 
 }

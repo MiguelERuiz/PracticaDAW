@@ -1,11 +1,10 @@
-package FIlmTube;
+package FIlmTube.TheMovieDB;
 
 import java.util.List;
 
-/**
- * Created by Nacho on 20/06/2017.
- */
-public class MovieRest {
+// Esta clase se utiliza para parsear la informacion de las peliculas que mejor coinciden en la API
+
+public class Data {
 
     private String code;
     private String msg;

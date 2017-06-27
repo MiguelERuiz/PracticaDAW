@@ -1,5 +1,8 @@
-package FIlmTube;
+package FIlmTube.Services;
 
+import FIlmTube.*;
+import FIlmTube.Repositories.MovieRepository;
+import FIlmTube.TheMovieDB.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit.RestAdapter;
@@ -93,17 +96,17 @@ public class MovieService {
 
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("http://api.themoviedb.org/3/").build();
         SearchMovieRestRepository searchMovies = restAdapter.create(SearchMovieRestRepository.class);
-        MovieRest requestMovie = searchMovies.getMovieByName(api_key, titulo);
+        Data requestMovie = searchMovies.getMovieByName(api_key, titulo);
         List<Results> results = requestMovie.getResults();
 
         return results.get(0);
     }
 
-    public MovieRest_1 getMovieByImdbId(Long imdbId) {
+    public MovieInfo getMovieByImdbId(Long imdbId) {
 
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("https://api.themoviedb.org/3/").build();
         SearchMovieRestRepository searchMovieRestRepository = restAdapter.create(SearchMovieRestRepository.class);
-        MovieRest_1 movie = searchMovieRestRepository.getMovieByImdbId(imdbId, api_key);
+        MovieInfo movie = searchMovieRestRepository.getMovieByImdbId(imdbId, api_key);
         movie.setPoster_path("http://image.tmdb.org/t/p/w342" + movie.getPoster_path());
 
         return movie;
@@ -118,23 +121,23 @@ public class MovieService {
         return credits;
     }
 
-    public TheMovieDB getMovieFromTMDB(Movie movie){
+    public MovieRest getMovieFromTMDB(Movie movie){
         Long imdbId = movie.getImdbId();
-        TheMovieDB result = new TheMovieDB();
+        MovieRest result = new MovieRest();
         Credits credits = getCreditsByImdbId(imdbId);
-        MovieRest_1 movieRest_1 =getMovieByImdbId(imdbId);
+        MovieInfo movieInfo = getMovieByImdbId(imdbId);
         result.setCredits(credits);
-        result.setMovieRest_1(movieRest_1);
+        result.setMovieInfo(movieInfo);
 
         return  result;
     }
 
-    public Movie completeInformation(Movie movie, TheMovieDB movieDB){
+    public Movie completeInformation(Movie movie, MovieRest movieDB){
         if(movie.getDescription()==null){
-            movie.setDescription(movieDB.getMovieRest_1().getOverview());
+            movie.setDescription(movieDB.getMovieInfo().getOverview());
         }
         if(movie.getYear()==null){
-            movie.setYear(movieDB.getMovieRest_1().getRelease_date());
+            movie.setYear(movieDB.getMovieInfo().getRelease_date());
         }
         if(movie.getDirector()==null){
             movie.setDirector(movieDB.getCredits().getDirector());
@@ -143,10 +146,10 @@ public class MovieService {
             movie.setActors(movieDB.getCredits().castToString());
         }
         if(movie.getPoster().equals("../images/defaultImage.jpg")){
-            movie.setPoster(movieDB.getMovieRest_1().getPoster_path());
+            movie.setPoster(movieDB.getMovieInfo().getPoster_path());
         }
         if(movie.getRating()==null){
-            movie.setRating(movieDB.getMovieRest_1().getVote_average());
+            movie.setRating(movieDB.getMovieInfo().getVote_average());
         }
         movieRepository.save(movie);
         return movie;

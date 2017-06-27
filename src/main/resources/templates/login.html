@@ -9,8 +9,8 @@
 </head>
 <body>
 <section class="header-log">
-    <h th:if="${param.error}">Invalid credentials</h>
-    <h1 th:if="${param.logout}">Logged out</h1>
+    <h th:if="${param.error}">Invalid Credentials</h>
+    <h1 th:if="${param.logout}">Logged Out</h1>
     <h1 th:if="${param.logout==null and param.error==null}">Log In</h1>
 </section>
 <section class="login-page">

@@ -6,9 +6,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by Nacho on 28/05/2017.
- */
 @Entity
 public class User {
 

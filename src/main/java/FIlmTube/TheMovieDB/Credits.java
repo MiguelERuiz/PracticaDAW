@@ -1,7 +1,9 @@
-package FIlmTube;
+package FIlmTube.TheMovieDB;
 
 import java.util.Iterator;
 import java.util.List;
+
+// Esta clase se utiliza para parsear la informacion de los creditos de la pelicula que te devuelve la API
 
 public class Credits {
 

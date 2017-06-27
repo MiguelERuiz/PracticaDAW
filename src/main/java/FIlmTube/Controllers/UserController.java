@@ -1,5 +1,7 @@
-package FIlmTube;
+package FIlmTube.Controllers;
 
+import FIlmTube.User;
+import FIlmTube.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -63,7 +65,7 @@ public class UserController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value="/deleteUser", method={RequestMethod.GET,RequestMethod.POST})
-    public String remove(@RequestParam Long id){
+    public String removeUser(@RequestParam Long id){
         String resultado = "redirect:/users?errorBorrar";
         if(id != 1) {
             userService.borrarUsuario(id);

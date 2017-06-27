@@ -1,7 +1,8 @@
-package FIlmTube;
+package FIlmTube.TheMovieDB;
 
+// Esta clase se utiliza para parsear los datos mas relevantes de la pelicula que devuelve la API
 
-public class MovieRest_1 {
+public class MovieInfo {
 
     private String overview;
     private String poster_path;

@@ -1,8 +1,7 @@
-package FIlmTube;
+package FIlmTube.TheMovieDB;
 
-/**
- * Created by toshiba on 21/06/17.
- */
+// Esta clase se utiliza para parsear la informacion del equipo que realizo la pelicula que te devuelve la API
+
 public class Crew {
 
     private String credit_id;

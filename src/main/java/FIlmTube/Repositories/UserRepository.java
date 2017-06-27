@@ -1,5 +1,6 @@
-package FIlmTube;
+package FIlmTube.Repositories;
 
+import FIlmTube.User;
 import org.springframework.data.repository.CrudRepository;
 
 /**

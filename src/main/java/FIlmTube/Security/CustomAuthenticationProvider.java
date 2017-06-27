@@ -1,5 +1,7 @@
-package FIlmTube;
+package FIlmTube.Security;
 
+import FIlmTube.Repositories.UserRepository;
+import FIlmTube.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,9 +14,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * Created by Nacho on 28/05/2017.
- */
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 

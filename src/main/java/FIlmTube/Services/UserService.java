@@ -1,5 +1,7 @@
-package FIlmTube;
+package FIlmTube.Services;
 
+import FIlmTube.User;
+import FIlmTube.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

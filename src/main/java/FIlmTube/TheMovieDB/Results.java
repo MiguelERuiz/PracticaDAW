@@ -1,6 +1,8 @@
-package FIlmTube;
+package FIlmTube.TheMovieDB;
 
 import java.util.List;
+
+// Esta clase se utiliza para parsear la informacion de una pelicula cuando se busca por el titulo
 
 public class Results {
 
@@ -15,7 +17,6 @@ public class Results {
     private String original_title;
     private List<Integer> genre_ids;
     private String backdrop_path;
-    //private String overview;
     private String release_date;
 
     public Long getVote_count() {

@@ -1,4 +1,6 @@
-package FIlmTube;
+package FIlmTube.TheMovieDB;
+
+// Esta clase se utiliza para parsear la informacion de los actores que te devuelve la API
 
 public class Cast {
 
