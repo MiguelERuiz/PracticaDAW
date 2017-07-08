@@ -28,6 +28,10 @@ body {
     text-decoration: none;
 }
 
+.navbar li:hover{
+    background: black;
+}
+
 .addMovie-page {
     width: 360px;
     margin: auto;

@@ -28,6 +28,10 @@ body {
     text-decoration: none;
 }
 
+.navbar li:hover{
+    background: black;
+}
+
 .addUser-page {
 	width: 360px;
 	margin-top: 120px;

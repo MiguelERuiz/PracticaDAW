@@ -29,6 +29,10 @@ body {
     text-decoration: none;
 }
 
+.navbar li:hover{
+    background: black;
+}
+
 .container-fluid .alert{
     position: relative;
     margin-top: 70px;

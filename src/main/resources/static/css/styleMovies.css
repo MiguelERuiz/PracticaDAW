@@ -33,6 +33,10 @@ body {
     text-decoration: none;
 }
 
+.navbar li:hover{
+    background: black;
+}
+
 .container {
     margin-top: 50px;
 }

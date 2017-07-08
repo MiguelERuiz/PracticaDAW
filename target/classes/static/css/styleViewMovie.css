@@ -29,6 +29,10 @@ body {
     text-decoration: none;
 }
 
+.navbar li:hover{
+    background: black;
+}
+
 .container {
       padding-top: 70px;
       padding-bottom: 40px;
